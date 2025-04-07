@@ -3,7 +3,7 @@ A = 1;              % Amplitud de la señal
 fc = 1000;          % Frecuencia de la señal (Hz)
 Ts_signal = 10e-6;  % Muestreo de la señal original (10 µs)
 duracion = 0.1;     % Duración en segundos
-fs = 5000;          % Frecuencia de muestreo PAM (Hz)
+fs = 10000;          % Frecuencia de muestreo PAM (Hz)
 d = 0.3;            % Ciclo de trabajo (τ/Ts_pulse)
 N = 3;              % Número de bits por palabra PCM
 
@@ -41,26 +41,34 @@ for n = 0:length(t_samples)-1
     s_quant(ventana) = samples_quantized(n+1);
 end
 
-%% Visualización en mismo gráfico
 figure;
-hold on;
 
-% Señal original
-plot(t, m, 'b', 'LineWidth', 1.5, 'DisplayName', 'Señal original');
-
-% PAM muestreado instantáneo
-plot(t, s, 'r--', 'LineWidth', 1.2, 'DisplayName', 'PAM instantáneo');
-
-% PAM cuantizado
-plot(t, s_quant, 'g:', 'LineWidth', 2, 'DisplayName', ['PAM cuantizado (N=', num2str(N), ' bits)']);
-
-xlim([0 0.005]);
-title('Comparación de señales');
+% 1. Señal original
+subplot(3,1,1);
+plot(t, m, 'b', 'LineWidth', 1.5);
+title('Señal Original');
 xlabel('Tiempo (s)');
 ylabel('Amplitud');
-legend('show', 'Location', 'southeast');
+xlim([0 0.005]);
 grid on;
-hold off;
+
+% 2. PAM muestreado instantáneo
+subplot(3,1,2);
+plot(t, s, 'r--', 'LineWidth', 1.2);
+title('PAM Instantáneo');
+xlabel('Tiempo (s)');
+ylabel('Amplitud');
+xlim([0 0.005]);
+grid on;
+
+% 3. PAM cuantizado
+subplot(3,1,3);
+plot(t, s_quant, 'g:', 'LineWidth', 2);
+title(['PAM Cuantizado (N = ', num2str(N), ' bits)']);
+xlabel('Tiempo (s)');
+ylabel('Amplitud');
+xlim([0 0.005]);
+grid on;
 
 %% Visualización adicional de niveles de cuantización (opcional)
 figure;

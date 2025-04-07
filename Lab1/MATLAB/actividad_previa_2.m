@@ -40,5 +40,5 @@ grid on;
 subplot(3,1,3);
 plot(t, s);
 xlim([0, 2/fc]);  % Mostrar 2 periodos de la señal modulada
-title('Señal Modulada s(t) (AM con muestreo natural)');
+title('Señal Modulada s(t) (PAM con muestreo natural)');
 grid on;
