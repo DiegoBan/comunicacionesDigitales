@@ -94,14 +94,6 @@ fprintf('Error máximo: %.6f\n', error_maximo);
 fprintf('Error medio: %.6f\n', error_medio);
 fprintf('Error RMSE: %.6f\n', error_rmse);
 
-%% Gráfico adicional: Histograma del error de cuantización
-figure;
-histogram(error_cuantizacion, 20);
-title(['Distribución del error de cuantización (N=', num2str(N), ' bits)']);
-xlabel('Error');
-ylabel('Frecuencia');
-grid on;
-
 %% Calcular paso de cuantización
 paso_q = 2*A/(2^N);
 fprintf('Paso de cuantización: %.6f\n', paso_q);
